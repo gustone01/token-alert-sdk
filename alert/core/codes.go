@@ -5,6 +5,7 @@ var (
 		40102: {},
 		40103: {},
 		40104: {},
+		40105: {},
 	}
 	tencentTokenCodes = map[int64]struct{}{
 		11000: {},
