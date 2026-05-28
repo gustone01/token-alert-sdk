@@ -53,6 +53,7 @@ alertcore.TryNotify(alertcore.PlatformTencent, code, message, apiPath, accessTok
 |------|------|
 | `enabled` | 总开关，`false` 时零开销透传 |
 | `wecom_webhook_key` | 企微机器人 key 或完整 webhook URL |
+| `host_ip` | 告警来源机器 IP；为空时自动探测本机 IPv4 |
 | `dedup_ttl` | 同一 token+错误码告警冷却（Redis SET NX） |
 | `peek_bytes` | 响应 peek 上限，默认 8192 |
 

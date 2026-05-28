@@ -21,6 +21,7 @@ type Event struct {
 	Platform   Platform
 	TokenType  TokenType
 	Service    string
+	HostIP     string
 	APIPath    string
 	Code       int64
 	Message    string

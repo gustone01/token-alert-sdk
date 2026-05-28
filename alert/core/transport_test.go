@@ -36,10 +36,14 @@ func TestTransportPeekPreservesBody(t *testing.T) {
 	tp := core.NewTransport(http.DefaultTransport,
 		core.WithEnabled(true),
 		core.WithPlatform(core.PlatformBytedance),
+		core.WithHostIP("10.0.0.8"),
 		core.WithSender(core.SenderFunc(func(_ context.Context, e core.Event) error {
 			notified = true
 			if e.Code != 40102 {
 				t.Fatalf("unexpected code %d", e.Code)
+			}
+			if e.HostIP != "10.0.0.8" {
+				t.Fatalf("unexpected host ip %q", e.HostIP)
 			}
 			close(done)
 			return nil

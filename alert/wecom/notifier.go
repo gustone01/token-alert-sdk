@@ -94,9 +94,14 @@ func renderContent(event core.Event) string {
 	if when.IsZero() {
 		when = time.Now()
 	}
+	hostIP := event.HostIP
+	if hostIP == "" {
+		hostIP = "未知"
+	}
 	lines := []string{
 		"【媒体Token失效告警】",
 		fmt.Sprintf("来源：%s", event.Service),
+		fmt.Sprintf("IP：%s", hostIP),
 		fmt.Sprintf("平台：%s", event.Platform.DisplayName()),
 		fmt.Sprintf("接口：%s", event.APIPath),
 		fmt.Sprintf("错误码：%d", event.Code),

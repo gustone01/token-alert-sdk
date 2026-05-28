@@ -41,6 +41,7 @@ func (h *Handler) Handle(platform Platform, code int64, message, apiPath, tokenH
 		Platform:   platform,
 		TokenType:  TokenTypeAccessToken,
 		Service:    h.opts.ServiceName,
+		HostIP:     ResolveHostIP(h.opts.HostIP),
 		APIPath:    apiPath,
 		Code:       code,
 		Message:    message,
@@ -55,6 +56,9 @@ func (h *Handler) Handle(platform Platform, code int64, message, apiPath, tokenH
 }
 
 func (h *Handler) notifyAsync(event Event) {
+	if event.HostIP == "" {
+		event.HostIP = ResolveHostIP(h.opts.HostIP)
+	}
 	if h.shouldDedup(event) {
 		return
 	}

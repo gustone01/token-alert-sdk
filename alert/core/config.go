@@ -16,6 +16,7 @@ type PlatformSwitch struct {
 type Config struct {
 	Enabled           bool           `yaml:"enabled" json:"enabled"`
 	WecomWebhookKey   string         `yaml:"wecom_webhook_key" json:"wecom_webhook_key"`
+	HostIP            string         `yaml:"host_ip" json:"host_ip"`
 	MentionedList     []string       `yaml:"mentioned_list" json:"mentioned_list"`
 	DedupTTL          time.Duration  `yaml:"dedup_ttl" json:"dedup_ttl"`
 	PeekBytes         int            `yaml:"peek_bytes" json:"peek_bytes"`

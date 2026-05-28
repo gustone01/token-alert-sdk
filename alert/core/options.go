@@ -11,6 +11,7 @@ type Options struct {
 	Enabled           bool
 	Platform          Platform
 	ServiceName       string
+	HostIP            string
 	PeekBytes         int
 	DedupTTL          time.Duration
 	NotifyTimeout     time.Duration
@@ -32,6 +33,10 @@ func WithPlatform(platform Platform) Option {
 
 func WithServiceName(name string) Option {
 	return func(o *Options) { o.ServiceName = name }
+}
+
+func WithHostIP(ip string) Option {
+	return func(o *Options) { o.HostIP = ip }
 }
 
 func WithPeekBytes(n int) Option {
@@ -67,6 +72,7 @@ func WithConfig(cfg Config) Option {
 	return func(o *Options) {
 		cfg.ApplyDefaults()
 		o.Enabled = cfg.Enabled
+		o.HostIP = cfg.HostIP
 		o.PeekBytes = cfg.PeekBytes
 		o.DedupTTL = cfg.DedupTTL
 		if cfg.NotifyTimeoutSecs > 0 {
